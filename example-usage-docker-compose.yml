@@ -1,0 +1,29 @@
+version: '3.6'
+
+services:
+
+  clamav-server:
+    image: mkodockx/docker-clamav
+    networks:
+      - antivirus
+    ports:
+      - "3310:3310"
+
+  clamav-rest:
+    image: lokori/clamav-rest
+    depends_on:
+      - "clamav-server"
+    networks:
+      - antivirus
+    environment:
+      CLAMD_HOST: clamav-server
+      CLAMD_MAX_FILE_SIZE: 30000KB
+      CLAMD_MAX_REQUEST_SIZE: 30000KB
+    ports:
+      - "8200:8080"
+
+ 
+networks:
+  antivirus:
+    driver: bridge
+ 
