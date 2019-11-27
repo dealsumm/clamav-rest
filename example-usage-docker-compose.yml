@@ -10,7 +10,8 @@ services:
       - "3310:3310"
 
   clamav-rest:
-    image: lokori/clamav-rest
+    build: .
+    image: ds-clamav-rest:latest
     depends_on:
       - "clamav-server"
     networks:
