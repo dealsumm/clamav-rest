@@ -10,8 +10,7 @@ services:
       - "3310:3310"
 
   clamav-rest:
-    build: .
-    image: ds-clamav-rest:latest
+    image: ds-clamav-rest
     depends_on:
       - "clamav-server"
     networks:
