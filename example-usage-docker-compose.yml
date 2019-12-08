@@ -10,7 +10,7 @@ services:
       - "3310:3310"
 
   clamav-rest:
-    image: ds-clamav-rest
+    image: clamav-rest
     depends_on:
       - "clamav-server"
     networks:
@@ -19,6 +19,7 @@ services:
       CLAMD_HOST: clamav-server
       CLAMD_MAX_FILE_SIZE: 30000KB
       CLAMD_MAX_REQUEST_SIZE: 30000KB
+      CLAMD_TIMEOUT: 10000
     ports:
       - "8200:8080"
 
